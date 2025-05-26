@@ -1,4 +1,306 @@
+<template>
+    <GuestLayout>
+        <!-- Hero mit Fullscreen-Hintergrund und Overlay -->
+        <section
+            class="relative flex items-center justify-center max-h-screen overflow-hidden bg-gray-900"
+        >
+            <div class="absolute inset-0">
+                <img
+                    src="/images/Header_welcome.avif"
+                    alt="Glasfaser Netzwerk"
+                    class="object-cover w-full opacity-80"
+                />
+            </div>
+
+            <div class="container relative px-6 py-32 mx-auto text-center">
+                <div class="max-w-4xl mx-auto">
+                    <h1
+                        class="mb-6 text-4xl font-bold leading-tight text-white md:text-6xl"
+                    >
+                        <span
+                            class="text-transparent bg-gradient-to-r from-teal-400 to-indigo-400 bg-clip-text"
+                        >
+                            Zukunftssichere </span
+                        ><br />
+                        Glasfaserinfrastrukturen
+                    </h1>
+
+                    <p
+                        class="max-w-2xl mx-auto mb-10 text-xl font-extrabold text-white"
+                    >
+                        Planung, Bau und Dokumentation nach deutschen
+                        Qualitätsstandards für maximale Zukunftssicherheit
+                    </p>
+
+                    <div class="flex flex-col justify-center gap-4 sm:flex-row">
+                        <Link
+                            href="/kontakt"
+                            class="px-8 py-4 font-medium text-white transition-all transform rounded-lg bg-gradient-to-r from-teal-600 to-indigo-600 hover:shadow-xl hover:-translate-y-1"
+                        >
+                            Projekt anfragen
+                        </Link>
+                        <Link
+                            href="/leistungen"
+                            class="px-8 py-4 text-white transition-all border rounded-lg bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/20"
+                        >
+                            Leistungen entdecken
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute transform -translate-x-1/2 bottom-10 left-1/2">
+                <div
+                    class="flex justify-center w-6 h-10 border-2 border-white rounded-full animate-bounce"
+                >
+                    <div class="w-1 h-2 mt-2 bg-white rounded-full"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leistungen Section mit modernen Karten -->
+        <section class="py-20 bg-white">
+            <div class="container px-6 mx-auto">
+                <div class="mb-16 text-center">
+                    <span
+                        class="inline-block px-4 py-1 mb-4 text-sm font-medium text-teal-600 bg-teal-100 rounded-full"
+                    >
+                        Unsere Expertise
+                    </span>
+                    <h2
+                        class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl"
+                    >
+                        Maßgeschneiderte
+                        <span class="text-teal-600">Lösungen</span>
+                    </h2>
+                    <p class="max-w-2xl mx-auto text-gray-600">
+                        Von der Planung bis zur Dokumentation - alles aus einer
+                        Hand
+                    </p>
+                </div>
+
+                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                    <div
+                        v-for="(leistung, index) in leistungen"
+                        :key="index"
+                        class="relative overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg group rounded-xl hover:shadow-xl"
+                    >
+                        <div
+                            class="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-br from-teal-50 to-indigo-50 group-hover:opacity-100"
+                        ></div>
+                        <div class="relative p-8">
+                            <div
+                                class="flex items-center justify-center mb-6 text-white rounded-lg w-14 h-14 bg-gradient-to-r from-teal-600 to-indigo-600"
+                            >
+                                <span class="text-2xl">{{ icons[index] }}</span>
+                            </div>
+                            <h3
+                                class="mb-3 text-xl font-semibold text-gray-900"
+                            >
+                                {{ leistung.titel }}
+                            </h3>
+                            <p class="text-gray-600">
+                                {{ leistung.beschreibung }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-20 bg-white">
+            <div class="max-w-6xl px-6 mx-auto">
+                <h2 class="mb-16 text-3xl font-bold text-center text-gray-900">
+                    Warum <span class="text-teal-400">Antasus</span>?
+                </h2>
+                <div class="grid gap-8 md:grid-cols-3">
+                    <div class="p-8 text-center">
+                        <div
+                            class="flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-indigo-100 rounded-full"
+                        >
+                            <span class="text-2xl text-indigo-600">🔧</span>
+                        </div>
+                        <h3 class="mb-3 text-lg font-semibold text-gray-900">
+                            Fachkräfte aus Deutschland
+                        </h3>
+                        <p class="text-gray-600">
+                            Muttersprachliche Kommunikation ohne Barrieren
+                        </p>
+                    </div>
+                    <div class="p-8 text-center">
+                        <div
+                            class="flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-indigo-100 rounded-full"
+                        >
+                            <span class="text-2xl text-indigo-600">📐</span>
+                        </div>
+                        <h3 class="mb-3 text-lg font-semibold text-gray-900">
+                            DIN- & VDE-gerecht
+                        </h3>
+                        <p class="text-gray-600">
+                            Höchste Qualität durch strikte Normkonformität
+                        </p>
+                    </div>
+                    <div class="p-8 text-center">
+                        <div
+                            class="flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-indigo-100 rounded-full"
+                        >
+                            <span class="text-2xl text-indigo-600">📋</span>
+                        </div>
+                        <h3 class="mb-3 text-lg font-semibold text-gray-900">
+                            Planungssicherheit
+                        </h3>
+                        <p class="text-gray-600">
+                            Transparente Prozesse von Anfang bis Ende
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontakt Section -->
+        <section class="relative py-24 overflow-hidden text-white bg-blue-200">
+            <div
+                class="absolute inset-0 bg-[ural('/images/contact-pattern-dark.jpg')] opacity-10"
+            ></div>
+            <div class="relative max-w-4xl px-6 mx-auto">
+                <div class="mb-16 text-center">
+                    <h2 class="mb-4 text-3xl font-bold">
+                        <span class="text-teal-400">Bereit</span> für Ihr
+                        Projekt?
+                    </h2>
+                    <p class="max-w-2xl mx-auto text-black-300">
+                        Kontaktieren Sie uns für ein unverbindliches Angebot
+                    </p>
+                </div>
+                <div class="p-8 bg-gray-800 shadow-xl rounded-xl">
+                    <div class="grid gap-8 md:grid-cols-2">
+                        <div>
+                            <h3 class="mb-6 text-xl font-semibold text-white">
+                                Kontaktdaten
+                            </h3>
+                            <address class="space-y-4 not-italic text-gray-300">
+                                <p class="flex items-start">
+                                    <span class="mt-1 mr-3">📍</span>
+                                    <span
+                                        >ANTASUS Infra<br />
+                                        Norrenbergstraße 122<br />
+                                        42289 Wuppertal</span
+                                    >
+                                </p>
+                                <p class="flex items-center">
+                                    <span class="mr-3">📞</span>
+                                    <a
+                                        href="tel:+4917624757616"
+                                        class="transition-colors hover:text-teal-400"
+                                    >
+                                        +49 202 42988411
+                                    </a>
+                                </p>
+                                <p class="flex items-center">
+                                    <span class="mr-3">📧</span>
+                                    <a
+                                        href="mailto:info@antasus.de"
+                                        class="transition-colors hover:text-teal-400"
+                                    >
+                                        info@antasus.de
+                                    </a>
+                                </p>
+                            </address>
+                        </div>
+                        <div>
+                            <h3 class="mb-6 text-xl font-semibold text-white">
+                                Schnellanfrage
+                            </h3>
+                            <Link
+                                href="/kontakt"
+                                class="inline-block w-full px-6 py-3 mb-4 font-semibold text-center text-white transition-colors bg-teal-600 rounded-lg hover:bg-teal-400 hover:text-black"
+                            >
+                                Kontaktformular
+                            </Link>
+                            <p class="text-sm text-gray-400">
+                                Wir antworten innerhalb von 24 Stunden
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Weitere Sections bleiben ähnlich, aber mit dem neuen Designsystem -->
+    </GuestLayout>
+</template>
+
 <script setup>
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import { Link } from "@inertiajs/vue3";
+import { onMounted } from "vue";
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "ANTASUS Infra",
+    image: "https://www.antasus.de/images/antasus-logo2.svg",
+    "@id": "https://www.antasus.de",
+    url: "https://www.antasus.de",
+    telephone: "+49 176 24757616",
+    email: "info@antasus.de",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "Norrenbergstraße 122",
+        addressLocality: "Wuppertal",
+        postalCode: "42289",
+        addressCountry: "DE",
+    },
+    description:
+        "Ihr Subunternehmer für Glasfaser-Tiefbau, Hausanschlüsse und technische Projektabwicklung nach DIN/VDE – partnerschaftlich & termintreu.",
+    areaServed: {
+        "@type": "GeoCircle",
+        geoMidpoint: {
+            "@type": "GeoCoordinates",
+            latitude: 51.2562,
+            longitude: 7.1508,
+        },
+        geoRadius: 150,
+    },
+    sameAs: [
+        "https://www.linkedin.com/company/antasus",
+        "https://www.xing.com/pages/antasus-infra",
+    ],
+};
+
+onMounted(() => {
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.text = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+});
+
+const leistungen = [
+    {
+        titel: "Hausanschlüsse",
+        beschreibung:
+            "Trasse, Bohrung & Innenmontage – alles aus einer Hand mit deutscher Präzision.",
+    },
+    {
+        titel: "Glasfaser-Tiefbau",
+        beschreibung:
+            "DIN- & VDE-gerechte Leerrohrverlegung mit höchster Qualität und Dokumentation.",
+    },
+    {
+        titel: "Projektplanung & Beratung",
+        beschreibung:
+            "Technische Planung mit Praxisbezug für Generalunternehmer und Bauherren.",
+    },
+    {
+        titel: "Dokumentation",
+        beschreibung:
+            "Lückenlose Ausführung nach Auftraggebervorgaben & aktuellen Normen.",
+    },
+];
+
+const icons = ["🏠", "🛠️", "📊", "📋"];
+</script>
+
+<!-- <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
 defineProps({
@@ -378,4 +680,4 @@ function handleImageError() {
             </div>
         </div>
     </div>
-</template>
+</template> -->
